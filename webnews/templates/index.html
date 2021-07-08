@@ -1,0 +1,85 @@
+{% extends "base.html"%}
+{% load static %}
+{% block body%}
+
+
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-9">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="section-title">
+									<h2>Tin Tức Nổi Bật</h2>
+								</div>
+							</div>
+							<!-- post -->
+							{% for item in news %}
+							<div class="col-md-12">
+								<div class="post post-row">
+									<a class="post-img" href="{% url 'news:detail' item.id %}"><img src="{{ item.image.url }}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											{% for ctem in cate %}
+												{% if item.category.id == ctem.id%}
+											<a class="post-category cat-2" href="{% url 'news:category' item.category.id %}">{{ctem.name}}</a>
+												{% endif %}
+											{% endfor %}
+											<span class="post-date">{{item.date_added|date:'M d, Y H:i'}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'news:detail' item.id %}">{{item.title}}</a></h3>
+										<p>{{item.description}}</p>
+									</div>
+								</div>
+							</div>
+							{% endfor%}
+							<!-- /post -->
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{%static '/img/banner_1.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+						
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>DANH MỤC</h2>
+							</div>
+							<div class="category-widget">
+								<ul>
+									{% for item in cate %}
+									<li><a href="{% url 'news:category' item.id %}" class="cat-1">{{item.name}}<span></span></a></li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+						<!-- /catagories -->
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{%static '/img/banner_2.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+
+{%endblock%}
+
+
+

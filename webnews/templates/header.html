@@ -1,0 +1,59 @@
+{% load static %}
+		<!-- Header -->
+		<header id="header">
+			<!-- Nav -->
+			<div id="nav">
+				<!-- Main Nav -->
+				<div id="nav-fixed">
+					<div class="container">
+						<!-- logo -->
+						<div class="nav-logo">
+							<a href="{% url 'news:index' %}" class="logo"><img src="{%static '/img/logo.png'%}" alt=""></a>
+						</div>
+						<!-- /logo -->
+
+						<!-- nav -->
+						<ul class="nav-menu nav navbar-nav">
+							<li class="cat-3"><a href="{% url 'news:index' %}">HOME</a></li>
+								{% for item in cate %}
+								<li class="cat-2"><a href="{% url 'news:category' item.id %}">{{item.name}}</a></li>
+								{% endfor%}
+						</ul>
+						<!-- /nav -->
+
+						<!-- search & aside toggle -->
+						<div class="nav-btns">
+							<div class="nav-search">
+							<form action="{% url 'news:search' %}" method="get">
+								<input required class="nav-input"  type="text" name="search" placeholder="Search" aria-label="Search">
+								<button class="nav-button" type="submit" ><i class="fa fa-search"></i></button>
+							</form>
+							</div>
+							<button class="aside-btn"><i class="fa fa-bars"></i></button>
+						</div>
+						<!-- /search & aside toggle -->
+					</div>
+				</div>
+				<!-- /Main Nav -->
+
+				<!-- Aside Nav -->
+				<div id="nav-aside">
+					<!-- nav -->
+					<div class="section-row">
+						<ul class="nav-aside-menu">
+							<li><a href="{% url 'news:index' %}">Home</a></li>
+							{% for item in cate %}
+							<li><a href="{% url 'news:category' item.id %}">{{item.name}}</a></li>
+							{% endfor%}
+						</ul>
+					</div>
+					<!-- /nav -->
+					<!-- aside nav close -->
+					<button class="nav-aside-close"><i class="fa fa-times"></i></button>
+					<!-- /aside nav close -->
+				</div>
+				<!-- Aside Nav -->
+			</div>
+			<!-- /Nav -->
+		</header>
+		<!-- /Header -->
